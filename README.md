@@ -3,7 +3,7 @@
 Se você está disposto a ler esse documento, parabéns, acho que você vai aprender alguma coisa.
 Em primeiro lugar o ambiente de desenvolvimento, eu deixei na raíz do projeto, um arquivo chamado Pipfile, ele é para ser usado com o pipenv.
 
-*Read this in other languages: [English](README.md), [Portuguese](README.pt_br.md)*
+*Read this in other languages: [English](README.md), [Portuguese](README.pt_BR.md)*
 
 
 
