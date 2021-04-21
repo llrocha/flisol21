@@ -38,6 +38,7 @@ webencodings = "==0.5.1"
 CacheControl = "==0.12.6"
 CherryPy = "==18.6.0"
 fastapi = "*"
+click = "*"
 
 [dev-packages]
 pytest = "*"
