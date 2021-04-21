@@ -15,7 +15,7 @@ class ZipCodeApp(FastAPI):
     def get_zip_code(self, zipcode=None):
         if(zipcode is None or len(zipcode) != 8):
             message = 'Zip Code must contain 8 characters'
-            raise cherrypy.HTTPError(400, message=message)
+            raise HTTPException(status_code=404, detail=message)
 
         zip_code = self.zip_code_fromdb(zipcode)
 
