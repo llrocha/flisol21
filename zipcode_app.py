@@ -1,4 +1,4 @@
-from fastapi import FastAPI
+from fastapi import FastAPI, HTTPException
 
 from zipcode_db import ZipCodeDB
 from zipcode_dto import ZipCodeDTO
