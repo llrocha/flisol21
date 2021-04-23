@@ -31,7 +31,8 @@ def test_invalid_cep():
 
 def test_unexistent_cep():
     response = client.get("/zipcode/12345678")
-    assert response.status_code == 200
+    assert response.status_code == 404
+    assert response.json() == {"detail":"Zip code 12345678 does not exist."}
 
 def test_existent_cep():
     response = client.get("/zipcode/89035300")
