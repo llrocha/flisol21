@@ -22,7 +22,8 @@ class ZipCodeApp(FastAPI):
         if zip_code:
             return zip_code
         else:
-            return(f'Zip code {zipcode} does not exist.')
+            message = f'Zip code {zipcode} does not exist.'
+            raise HTTPException(status_code=404, detail=message)
 
     def zip_code_fromdb(self, param=''):
 
