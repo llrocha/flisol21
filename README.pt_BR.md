@@ -42,7 +42,7 @@ Seu ambiente de testes e desenvolvimento já deve estar preparado com o [pipenv]
 
 Para rodar o programa, você vai primeiro precisar da base de CEPs, para isso execute:
 ```
-python build_database.py
+$ python build_database.py
 ```
 
 A seguir como construir o banco de dados usado pelo microsserviço:
@@ -54,7 +54,7 @@ A seguir como construir o banco de dados usado pelo microsserviço:
 
 Agora sim, com a base de CEPs construida, você pode começar a executar o nosso microsserviço:
 ```
-uvicorn main:app --reload
+$ uvicorn main:app --reload
 ```
 Onde:<br> main é a referência ao arquivo main.py, e app a referência ao objeto da nossa aplicação. Na linha 7 do arquivo main.py você verá:
 ```
@@ -70,11 +70,29 @@ Com funciona? O FastAPI usa o uvicorn para executar seu código, assim temos um 
 
 ## Fazendo o build da base e do conteiner Docker
 ---
-Para fazer a instalação do docker no windows, você precisa baixar o [Docker Desktop](https://docs.docker.com/docker-for-windows/install/), é necessário configurar o windows para poder fazer funcionar o Docker Desktop.
+Para fazer a instalação do docker no windows, você precisa baixar o [Docker Desktop](https://docs.docker.com/docker-for-windows/install/), é necessário configurar o windows para poder fazer funcionar o Docker Desktop.<br>
+Feito isto, podemos colocar para construir nosso conteiner:
+```
+$ docker build . --tag zipcodes-app
+```
+Para verificar se seu conteiner, foi construido execute:
+```
+$ docker images
+REPOSITORY                          TAG                    IMAGE ID       CREATED         SIZE
+zipcodes-app                        latest                 9c822e63b8df   5 minutes ago   76.2MB
+<none>                              <none>                 7999d1981e82   5 minutes ago   345MB
+```
 
 
 ## Executando seu conteiner
 ---
+Agora que temos nosso aplicação dentro de um conteiner, vamos colocar para rodar e verificar se está tudo funcionando.
+```
+$ docker run -p 8000:8000 zipcodes-app
+```
+Acesse o browser com o seguinte endereço: http://127.0.0.1:8000/<br>
+Se estiver respondendo, você verá algo como:<br>
+![zipcodeapp](images/zipcodewebapp.png)
 
 
 ## Testando a aplicação com o LOCUST
