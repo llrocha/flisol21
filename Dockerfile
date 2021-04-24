@@ -11,7 +11,7 @@ RUN python3 -m ensurepip --default-pip && \
     pip install --no-cache-dir --upgrade pip && \
     pip install --no-cache-dir -r requirements.txt
 
-RUN mkdir base/
+#RUN mkdir base/
 
 RUN python3 build_database.py
 
