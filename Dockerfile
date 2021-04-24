@@ -37,5 +37,6 @@ COPY requirements.txt /app/
 COPY --from=base-test-env /app/base/cep.db /app/base/cep.db
 
 RUN pip install --no-cache-dir -r requirements.txt
+RUN pip install --no-cache-dir uvicorn
 
-CMD ["uvicorn", "--host", "0.0.0.0"]
+CMD ["uvicorn", "--host", "0.0.0.0", "main:app"]
