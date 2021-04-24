@@ -9,13 +9,11 @@ RUN apt update && \
 
 RUN python3 -m ensurepip --default-pip && \
     pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.tests.txt
+    pip install --no-cache-dir -r requirements.txt
 
 RUN mkdir base/
 
 RUN python3 build_database.py
-
-RUN pytest -v test_zipcode_app.py
 
 
 FROM alpine AS production-env
@@ -40,4 +38,4 @@ COPY --from=base-test-env /app/base/cep.db /app/base/cep.db
 
 RUN pip install --no-cache-dir -r requirements.txt
 
-CMD ["python3", "main.py"]
+CMD ["uvicorn", "--host", "0.0.0.0"]
