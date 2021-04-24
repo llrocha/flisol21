@@ -1,13 +1,17 @@
+import os
 import click
 from zipcode_db import ZipCodeDB
 
+
+def delete_db_file(filename):
+  if(os.path.isfile(filename)):
+    os.unlink(filename)
 
 def load_zipcodes_file(filename):
     fp = open(filename)
     content = fp.readlines()
     fp.close()
     return content
-
 
 @click.command()
 @click.option('--zipcode-file', default="ceps.txt", help='Filename containing zipcodes.')
@@ -16,6 +20,9 @@ def build(zipcode_file, output_database):
     click.echo(click.style(f'Building zipcodes database {zipcode_file}', fg='green'))
     # Read zip code file
     content = load_zipcodes_file(zipcode_file)
+
+    # Delete database if exists
+    delete_db_file(output_database)
 
     # Create database
     zipcode_db = ZipCodeDB(output_database, create=True)
