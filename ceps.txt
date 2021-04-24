@@ -1,0 +1,11 @@
+01551010	São Paulo/SP	Vila Monumento	Rua Leandro de Carvalho
+12010000	Taubaté/SP	Centro	Rua Anízio Ortiz Monteiro
+23017100	Rio de Janeiro/RJ	Campo Grande	Rua Doutor Carlos Viana de Oliveira
+34018432	Nova Lima/MG	Balneário Água Limpa	Avenida dos Portugueses
+45003335	Vitória da Conquista/BA	Cruzeiro	2ª Travessa Gilberto Lopes
+56304570	Petrolina/PE	Centro	Rua São Paulo
+67020651	Ananindeua/PA	Águas Lindas	Alameda Moara
+78025085	Cuiabá/MT	Porto	Avenida Tenente-Coronel Duarte - de 2202 ao fim - lado par
+89021901	Blumenau/SC	Garcia	Rua Amazonas, 1108 Blocos A/B/C 	 Condomínio Conjunto Residencial Jardim Bavária
+89035300	Blumenau/SC	Vila Nova	Rua Theodoro Holtrup
+90110360	Porto Alegre/RS	Praia de Belas	Esplanada Salma Chemale
