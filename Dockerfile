@@ -5,7 +5,7 @@ WORKDIR /app
 COPY . ./
 
 RUN apt update && \
-    apt install -y sqlite
+    apt install -y sqlite3
 
 RUN python3 -m ensurepip --default-pip && \
     pip install --no-cache-dir --upgrade pip && \
@@ -16,12 +16,12 @@ RUN python3 -m ensurepip --default-pip && \
 RUN python3 build_database.py
 
 
-FROM alpine AS production-env
+FROM alpine:3.8 AS production-env
 # Necessary packages
 RUN apk update && \
-    apk add --no-cache py3-psutil python3 sqlite tzdata && \
-    python3 -m ensurepip --default-pip && \
-    pip install --no-cache-dir --upgrade pip
+    apk add --no-cache py3-psutil python3 sqlite tzdata
+RUN python3 -m ensurepip --default-pip && \
+    pip3 install --no-cache-dir --upgrade pip
 
 # Timezone America/Sao_Paulo
 RUN cp /usr/share/zoneinfo/America/Sao_Paulo /etc/localtime
