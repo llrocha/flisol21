@@ -64,6 +64,8 @@ Para poder acessar e testar, abra http://localhost:8000/
 
 Com funciona? O FastAPI usa o uvicorn para executar seu código, assim temos um servidor WEB para receber nossas requisições, todas as alterações feitas no código, quando executamos o uvicorn com a opção --reload, são atualizadas sem a necessidade de parar e subir novamente a aplicação.
 
+Referências:
+https://geekpython.in/displaying-images-on-the-frontend-using-fastapi
 
 ---
 ## <a name="building"></a>Fazendo o build da base e do conteiner Docker
