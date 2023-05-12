@@ -1,26 +1,27 @@
-FROM python:3.8-slim AS base-test-env
+FROM alpine:3.18 as build-base-env
 
 WORKDIR /app
 
 COPY . ./
+COPY requirements.base ./requirements.txt
 
-RUN apt update && \
-    apt install -y sqlite3
+RUN apk update && \
+    apk add --no-cache python3 sqlite
 
 RUN python3 -m ensurepip --default-pip && \
-    pip install --no-cache-dir --upgrade pip && \
-    pip install --no-cache-dir -r requirements.txt
+    pip3 install --no-cache-dir --upgrade pip && \
+    pip3 install --no-cache-dir -r requirements.txt
 
-#RUN mkdir base/
+RUN if [ ! -d /app/base/ ];then mkdir /app/base/;fi
 
 RUN python3 build_database.py
 
 
-FROM alpine:3.8 AS production-env
+FROM alpine:3.18 AS production-env
 # Necessary packages
 RUN apk update && \
-    apk add --no-cache py3-psutil python3 sqlite tzdata
-RUN python3 -m ensurepip --default-pip && \
+    apk add --no-cache py3-psutil python3 sqlite tzdata && \
+    python3 -m ensurepip --default-pip && \
     pip3 install --no-cache-dir --upgrade pip
 
 # Timezone America/Sao_Paulo
@@ -34,9 +35,11 @@ COPY main.py /app/
 COPY sqlite_db.py /app/
 COPY zipcode_*.py /app/
 COPY requirements.txt /app/
-COPY --from=base-test-env /app/base/cep.db /app/base/cep.db
+COPY README.md /app/
+COPY images/* /app/images/
+COPY --from=build-base-env /app/base/cep.db /app/base/cep.db
 
-RUN pip install --no-cache-dir -r requirements.txt
-RUN pip install --no-cache-dir uvicorn
+RUN pip3 install --no-cache-dir -r requirements.txt
+RUN pip3 install --no-cache-dir uvicorn
 
 CMD ["uvicorn", "--host", "0.0.0.0", "main:app"]
