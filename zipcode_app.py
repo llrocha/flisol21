@@ -1,3 +1,5 @@
+import markdown
+
 from fastapi import FastAPI, HTTPException
 
 from zipcode_db import ZipCodeDB
@@ -7,7 +9,13 @@ from zipcode_dto import ZipCodeDTO
 class ZipCodeApp(FastAPI):
 
     def index(self):
-        return {"app_name": "Zip Code App"}    
+        try:
+            fp = open('README.md')
+            html = markdown.markdown(fp.read())
+            fp.close()
+        except Exception as e:
+            html = f'<pre>{e}</pre>'
+        return html
 
     def hc(self):
         return {"status": "OK"}

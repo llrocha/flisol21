@@ -1,13 +1,15 @@
-from fastapi import FastAPI
 from typing import Optional
+from fastapi.responses import HTMLResponse
+from fastapi.staticfiles import StaticFiles
 
 from zipcode_app import ZipCodeApp
 
 
 app = ZipCodeApp()
 
+app.mount("/images", StaticFiles(directory="images"), name='images')
 
-@app.get("/")
+@app.get("/", response_class=HTMLResponse)
 def read_root():
     return app.index()
 
